@@ -19,7 +19,7 @@ public class QuBetterParking
             {
                 if(parking[row][col] == parking[0][0])
                 {
-                    //Setting [0][0] to the exit
+                    //Setting [0][0] to the entrance/exit
                     parking[0][0] = 'E';
                     System.out.print(parking[row][col] + " ");
                     continue;
