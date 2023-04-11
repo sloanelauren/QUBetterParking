@@ -1,25 +1,26 @@
-public class QuBetterParking 
-{
-    public static void main(String[] args) 
-    {
-        //Made variables that hold the size of the array, the values can be changed to whatever programmer wants
-        int rowSize = 5; 
+import java.util.Collection;
+
+public class QuBetterParking {
+    public static void main(String[] args) {
+        // Made variables that hold the size of the array, the values can be changed to
+        // whatever programmer wants
+        int rowSize = 5;
         int colSize = 5;
-        
-        //Creating the array
-        char [][] parking;
+
+        // Creating the array
+        char[][] parking;
         parking = new char[rowSize][colSize];
 
-        //Counting variable for parking spaces
+        // Counting variable for parking spaces
         int availableSpots = 0;
-        //Printing Array and setting available spots
-        for(int row = 0; row < rowSize; row++)
-        {
-            for(int col = 0; col < colSize; col++)
-            {
-                if(parking[row][col] == parking[0][0])
-                {
-                    //Setting [0][0] to the entrance/exit
+
+        int row, col = 0;
+
+        // Printing Array and setting available spots
+        for (row = 0; row < rowSize; row++) {
+            for (col = 0; col < colSize; col++) {
+                if (parking[row][col] == parking[0][0]) {
+                    // Setting [0][0] to the entrance/exit
                     parking[0][0] = 'E';
                     System.out.print(parking[row][col] + " ");
                     continue;
@@ -33,20 +34,36 @@ public class QuBetterParking
         System.out.println("Available spots: " + availableSpots);
 
         // searches array for first available spot - first spot that is "0"
-        for(int i = 0; i < rowSize; i++){
-            for(int j = 0; j < colSize; j++){
-                if(parking[i][j] == '0'){
+        for (int i = 0; i < rowSize; i++) {
+            for (int j = 0; j < colSize; j++) {
+                if (parking[i][j] == '0') {
                     // i and j are the coordinates of the first available spot
                     // Ticket statement (assigns parking spots)
                     System.out.println("Please park in the ticketed spot.");
                     System.out.println(" ------------------------");
-                    System.out.println("|      Spot : "+ i + j +"         |");
+                    System.out.println("|      Spot : " + i + " , " + j + "      |");
                     System.out.println(" ------------------------");
-                    // setting i and j to rowSize and colSize breaks the loop - a break could also be used here
-                    i = rowSize;
-                    j = colSize;
+                    // setting i and j to rowSize and colSize breaks the loop - a break could also
+                    // be used here
+                    // i = rowSize;
+                    // j = colSize;
+
+                    // Setting X to the nestest taken spot
+                    parking[i][j] = 'X';
+                    for (row = 0; row < rowSize; row++) {
+                        for (col = 0; col < colSize; col++) {
+                            System.out.print(parking[row][col] + " ");
+                        }
+                        System.out.println();
+                    }
+
+                    // Tells user that there are no more spots left
+                    if (parking[i][j] == parking[4][4]) {
+                        System.out.println("\nThere are no more available spots. Please try again later!");
+                    }
                 }
             }
         }
+
     }
 }
